@@ -6,8 +6,20 @@ let index=require('./routes/index');
 let user=require('./routes/user');
 //文章分类路由
 let category=require('./routes/category');
+let bodyParser=require('body-parser');
+let path=require('path');
 //2.执行express方法得到app
 let app=express();
+//把urlencoded格式的字符串转成json对象
+app.use(bodyParser.urlencoded({extend:true}));
+//1.设置模版引擎
+app.set('view engine','html');
+//2.设置模版的存放目录
+app.set('views',path.resolve('views'));
+//3.设置html类型的模版
+app.engine('.html',require('ejs').__express);
+//创建静态文件中间件
+app.use(express.static(path.resolve('node_modules')));
 //如果客户端访问的路径是/开头,会走index路由中间件
 app.use('/',index);
 //如果客户端访问的路径是/user开头,会走user路由中间件
