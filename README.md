@@ -10,6 +10,11 @@ npm install express cookie-parser body-parser express-session connect-mongo conn
 ```
 
 # 设计路由
+## 首页路由
+|请求方式|路径|功能|
+|:----|:----|:----|
+|GET|/|首页|
+
 ## 用户路由
 |请求方式|路径|功能|
 |:----|:----|:----|
