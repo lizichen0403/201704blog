@@ -18,6 +18,11 @@ app.set('view engine','html');
 app.set('views',path.resolve('views'));
 //3.设置html类型的模版
 app.engine('.html',require('ejs').__express);
+//设置模版对象默认值
+app.use(function (req,res,next) {
+    res.locals.title='珠峰博客';
+    next();
+})
 //创建静态文件中间件
 app.use(express.static(path.resolve('node_modules')));
 //如果客户端访问的路径是/开头,会走index路由中间件

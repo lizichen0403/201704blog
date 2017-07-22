@@ -29,10 +29,21 @@ router.post('/signup',function (req,res) {
     });
 });
 router.get('/signin',function (req,res) {
-    res.send('登录');
+    res.render('./user/signin',{title:'登录'});
 });
-router.post('/signup',function (req,res) {
-    res.send('提交登录');
+router.post('/signin',function (req,res) {
+    let user=req.body;
+    User.findOne(user,function (err,olduser) {
+        if(err){
+            res.redirect('back');
+        }else {
+            if(olduser){
+                res.redirect('/');
+            }else {
+                res.redirect('back');
+            }
+        }
+    });
 });
 router.get('/signout',function (req,res) {
     res.send('退出');
