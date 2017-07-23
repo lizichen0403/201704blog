@@ -9,9 +9,33 @@ router.get('/list',function (req,res) {
     });
 });
 router.get('/add',function (req,res) {
-    res.send('得到添加分类的列表')
+    res.render('./category/add',{title:'添加分类'});
 });
 router.post('/add',function (req,res) {
-    res.send('提交增加分类的列表')
-})
+    let category=req.body;
+    //把分类对象保存到数据库中
+    Category.create(category,function (err,doc) {
+        if(err){
+            req.flash('error',err.toString());
+            res.redirect('back');
+        }
+        else {
+            req.flash('success','添加分类成功');
+            res.redirect('/category/list');
+        }
+    })
+
+});
+router.get('/delete/:_id',function (req,res) {
+    let _id=req.params._id;
+    Category.remove({_id},function (err,doc) {
+        if(err){
+            req.flash('error',err.toString());
+            res.redirect('back');
+        }else {
+            req.flash('success','删除成功');
+            res.redirect('/category/list');
+        }
+    })
+});
 module.exports=router;
