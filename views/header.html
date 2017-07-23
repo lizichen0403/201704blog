@@ -21,3 +21,14 @@
     </div>
 </nav>
 <div class="container">
+    <h3 style="margin-left: 600px;font-size: 40px"><%=title%></h3>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <%if(success){%>
+            <div class="alert alert-success text-center"><%=success%></div>
+            <%}%>
+            <%if(error){%>
+            <div class="alert alert-danger text-center"><%=error%></div>
+            <%}%>
+        </div>
+    </div>

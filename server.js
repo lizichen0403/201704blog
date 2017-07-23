@@ -4,6 +4,10 @@ let express=require('express');
 let index=require('./routes/index');
 //用户路由
 let user=require('./routes/user');
+//引入session中间件
+let session=require('express-session');
+//引入消息提示的中间件
+let flash=require('connect-flash');
 //文章分类路由
 let category=require('./routes/category');
 let bodyParser=require('body-parser');
@@ -18,13 +22,27 @@ app.set('view engine','html');
 app.set('views',path.resolve('views'));
 //3.设置html类型的模版
 app.engine('.html',require('ejs').__express);
+//创建静态文件中间件
+app.use(express.static(path.resolve('node_modules')));
+//使用此中间件之后,会在req.session属性
+app.use(session({
+    resave:true,//每次重新保存session
+    saveUninitialized:true,//保存未初始化的session
+    secret:'zfpx'//加密cookie的密钥
+}));
+//使用此flash中间件,会在请求对象上多一个flash属性,flash是一个方法,传两个参数表示存储消息,传一个参数表示读取消息,读完后立刻销毁
+app.use(flash())
 //设置模版对象默认值
 app.use(function (req,res,next) {
     res.locals.title='珠峰博客';
+    //在中间件中把成功消息从flash取出,赋给模版使用
+    res.locals.success=req.flash('success').toString();
+    //在中间件中把失败消息从flash取出,赋给模版使用
+    res.locals.error=req.flash('error').toString();
+    //一旦读取,此消息立即销毁
     next();
-})
-//创建静态文件中间件
-app.use(express.static(path.resolve('node_modules')));
+});
+
 //如果客户端访问的路径是/开头,会走index路由中间件
 app.use('/',index);
 //如果客户端访问的路径是/user开头,会走user路由中间件

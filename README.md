@@ -44,3 +44,6 @@ npm install express cookie-parser body-parser express-session connect-mongo conn
 |字段名|字段类型|
 |:----|:----|
 |name|分类名称|
+
+## 功能列表
+1. 信息提示
