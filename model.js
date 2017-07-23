@@ -12,3 +12,11 @@ let UserSchema=new mongoose.Schema({
 //定义模型
 let User=conn.model('User',UserSchema);
 exports.User=User;
+
+//文章分类的骨架模型
+let CategorySchema=new mongoose.Schema({
+    name:String
+});
+//定义数据库模型
+let Category=conn.model('Category',CategorySchema);
+exports.Category=Category;

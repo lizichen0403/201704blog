@@ -9,6 +9,13 @@ npm install express cookie-parser body-parser express-session connect-mongo conn
 
 ```
 
+# 上传文件
+1. 增加一个`type=file`的字段
+2.给表单增加一个属性`enctype="multipart/form-data"`,如果想上传文件必须加这个属性
+3. 使用multer中间件,得到req.file属性
+4. 给用户对象增加avatar属性
+
+
 # 设计路由
 ## 首页路由
 |请求方式|路径|功能|
