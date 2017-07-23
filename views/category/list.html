@@ -10,8 +10,7 @@
             </tr>
             </thead>
             <tbody>
-            <%
-            doc.forEach(function(item){%>
+            <%doc.forEach(function(item){%>
             <tr>
                 <td class="text-center"><%=item.name%></td>
                 <td class="text-center"><a href="/category/delete/<%=item._id%>" class="btn btn-danger">删除</a></td>

@@ -1,0 +1,26 @@
+<% include ../header.html %>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <ol class="breadcrumb">
+            <li><a href="#">分类名称:</a></li>
+            <li><a href="#"><%=article.category&&article.category.name%></a></li>
+        </ol>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <%=article.title%>
+            </div>
+            <div class="panel-body">
+                <%=article.content%>
+            </div>
+            <div class="panel-footer">
+                作者:<%=article.user&&article.user.username%>
+                发表时间:<%=article.createAt.toLocaleString()%>
+            </div>
+            <span class="pull-right">
+                <a href="/article/update/<%=article._id%>" class="btn btn-warning">修改</a>
+                <a href="/article/delete/<%=article._id%>" class="btn btn-danger">删除</a>
+            </span>
+        </div>
+    </div>
+</div>
+<% include ../footer.html %>

@@ -4,6 +4,8 @@ let express=require('express');
 let index=require('./routes/index');
 //用户路由
 let user=require('./routes/user');
+//文章路由
+let article=require('./routes/article');
 //引入session中间件
 let session=require('express-session');
 //使用mongodb存储会话的中间件,返回一个函数需要执行并传入session作为参数
@@ -58,5 +60,7 @@ app.use('/',index);
 app.use('/user',user);
 //如果客户端访问的路径是/category开头,会走category路由中间件
 app.use('/category',category);
+//如果客户端访问的路径是/article开头,会走article路由中间件
+app.use('/article',article);
 //3.监听端口
 app.listen(9090);
